@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="79.289" height="80" viewBox="0 0 79.289 80">
+  <g id="그룹_45" data-name="그룹 45" transform="translate(457.6 -199.111)">
+    <g id="그룹_43" data-name="그룹 43" transform="translate(77.511 1.778)">
+      <path id="패스_81" data-name="패스 81" d="M7.111,0H45.156a7.111,7.111,0,0,1,0,14.222H7.111A7.111,7.111,0,0,1,7.111,0Z" transform="translate(-525.156 234.311)" fill="#3ccadd"/>
+      <rect id="사각형_14" data-name="사각형 14" width="72.889" height="14.222" rx="7.111" transform="translate(-535.111 263.111)" fill="#3ccadd"/>
+      <g id="그룹_44" data-name="그룹 44" transform="translate(55.822 1.778)">
+        <path id="패스_80" data-name="패스 80" d="M7.289,0h48a7.289,7.289,0,0,1,0,14.578h-48A7.289,7.289,0,1,1,7.289,0Z" transform="translate(-585.6 246.756)" fill="#80d8e6"/>
+        <rect id="사각형_16" data-name="사각형 16" width="3.2" height="6.044" rx="1.6" transform="translate(-569.244 250.311)" fill="#5f8998"/>
+        <rect id="사각형_17" data-name="사각형 17" width="3.2" height="6.044" rx="1.6" transform="translate(-541.867 250.311)" fill="#5f8998"/>
+        <path id="패스_82" data-name="패스 82" d="M-557.124,253.554c1.316.668,1.546,1.442,3.239,1.4a3.675,3.675,0,0,0,3.072-1.4c.585-.71,2.8.293,1.316,1.671a5.44,5.44,0,0,1-4.388,1.8,6.2,6.2,0,0,1-4.325-1.63C-559.235,254.389-558.443,252.885-557.124,253.554Z" fill="#5f8998"/>
+      </g>
+    </g>
+    <path id="패스_78" data-name="패스 78" d="M-515.133,234.311s2.638-29.112,31.964-29.267v12.1s-16.059-.427-19.55,17.164Z" transform="translate(77.511 1.778)" fill="#80d8e6"/>
+    <path id="패스_79" data-name="패스 79" d="M-483.168,205.044s3.5-2.51,17.963-2.6v17.536s-15.27-.6-17.963-2.708Z" transform="translate(77.511 1.778)" fill="#b2b0bc"/>
+    <rect id="사각형_15" data-name="사각형 15" width="9.244" height="27.022" rx="4.622" transform="translate(-387.556 199.111)" fill="#f9f097"/>
+  </g>
+</svg>

@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "565630843616",
+    "firebase_url": "https://smarthome-4842e.firebaseio.com",
+    "project_id": "smarthome-4842e",
+    "storage_bucket": "smarthome-4842e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:565630843616:android:2fdafa6010722cfb222e85",
+        "android_client_info": {
+          "package_name": "com.danny.smart_home"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "565630843616-540pd989c3kapv4ejdmr5o7bv44q05cp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtzqZGf-ot58HXNIfqWkIf5MqLE_ksLLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "565630843616-540pd989c3kapv4ejdmr5o7bv44q05cp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:565630843616:android:dc65fda41e8b36ca222e85",
+        "android_client_info": {
+          "package_name": "com.danny.smarthome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "565630843616-67bd91nhc82smpeievjs8duggsaqd7gb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.danny.smarthome",
+            "certificate_hash": "fb95560b411514b6a595caa5f26aea0c4df73aa0"
+          }
+        },
+        {
+          "client_id": "565630843616-540pd989c3kapv4ejdmr5o7bv44q05cp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtzqZGf-ot58HXNIfqWkIf5MqLE_ksLLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "565630843616-540pd989c3kapv4ejdmr5o7bv44q05cp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
