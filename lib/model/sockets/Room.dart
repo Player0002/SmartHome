@@ -56,7 +56,7 @@ class Room {
       for (int i = 0; i < pump; i++)
         devices.add(PumpModel(provider.waterStatus));
     if (servo > 0)
-      for (int i = 0; i < servo; i++) devices.add(GateModel(false));
+      for (int i = 0; i < servo; i++) devices.add(GateModel(provider.servo));
     //if(dth > 0) for(int i = 0; i < dth; i ++)devices.add(DTHModel());
     if (camera > 0)
       for (int i = 0; i < camera; i++) devices.add(CameraModel("link", false));

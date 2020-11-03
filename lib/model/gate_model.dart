@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:smarthome/components/control_card.dart';
 import 'package:smarthome/constants/colors.dart';
 import 'package:smarthome/model/sockets/Room.dart';
+import 'package:smarthome/screen/control/servo_control_screen.dart';
 
 import 'devices.dart';
 
@@ -31,7 +32,18 @@ class GateModel extends Devices<String> {
       index: index,
       subtitle: subtitle,
       title: title,
-      onPress: () {},
+      onPress: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (ctx) => ServoControlScreen(
+              title: "$title $index",
+              room: room,
+              isOk: true,
+            ),
+          ),
+        );
+      },
       color: getColor(),
     );
   }

@@ -9,11 +9,11 @@ import 'package:smarthome/utils/sizeconfig.dart';
 import 'base_control_screen.dart';
 import 'custom_tabs.dart';
 
-class PumpControlScreen extends StatelessWidget {
+class ServoControlScreen extends StatelessWidget {
   final bool isOk;
   final String title;
   final Room room;
-  PumpControlScreen({this.isOk, this.room, this.title});
+  ServoControlScreen({this.isOk, this.room, this.title});
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -32,15 +32,17 @@ class PumpControlScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SvgPicture.asset(
-                assetLocation['waterStatus'],
+                assetLocation['servo'],
                 width: minWH * 0.5,
               ),
               Consumer<SocketProvider>(
                 builder: (ctx, itm, _) => CustomTabs(
+                  first: "OPEN",
+                  seconds: "CLOSE",
                   onPress: (i) {
-                    itm.updatePump(room.id, i == 0);
+                    itm.updateServo(room.id, i == 0);
                   },
-                  initialIndex: itm.waterStatus ? 0 : 1,
+                  initialIndex: itm.servo ? 0 : 1,
                 ),
               )
             ],

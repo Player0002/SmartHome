@@ -20,6 +20,7 @@ class SocketProvider extends ChangeNotifier {
     'dust': false,
     'waterStatus': false,
     'neoPixel': false,
+    'servo': false,
   };
 
   List<Room> _rooms = [];
@@ -32,6 +33,10 @@ class SocketProvider extends ChangeNotifier {
   int get dust => _dust;
   bool _waterStatus = false;
   bool get waterStatus => _waterStatus;
+
+  bool _servo = false;
+  bool get servo => _servo;
+
   NeoPixel _neoPixel;
   NeoPixel get neoPixel => _neoPixel;
 
@@ -50,6 +55,12 @@ class SocketProvider extends ChangeNotifier {
     print("UPDATE $id");
     notifyListeners();
     socket.emit('water_state', {'status': newStatus});
+  }
+
+  void updateServo(int id, bool newStatus) {
+    _servo = newStatus;
+    notifyListeners();
+    socket.emit('servo', {'status': newStatus});
   }
 
   SocketProvider() {
@@ -90,7 +101,7 @@ class SocketProvider extends ChangeNotifier {
         _waterStatus = sensorInfo['initvalue'];
       }
       if (sensorInfo['sensor'] == 'servo') {
-        //pass
+        _servo = sensorInfo['initvalue'];
       }
       if (sensorInfo['sensor'] == 'dth') {
         _dths.add(Dth(
@@ -160,6 +171,11 @@ class SocketProvider extends ChangeNotifier {
         if (obj['neoPixel'] != null) {
           device['neoPixel'] = true;
           _neoPixel = NeoPixel.fromJson(obj['neoPixel']);
+          notifyListeners();
+        }
+        if (obj['servo'] != null) {
+          device['servo'] = true;
+          _servo = obj['servo'];
           notifyListeners();
         }
         print("Receive Init data :");

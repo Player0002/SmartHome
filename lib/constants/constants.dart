@@ -10,5 +10,6 @@ const Map<String, String> assetLocation = {
   'waterStatus': 'assets/svgs/pump.svg',
   'neoPixel': 'assets/svgs/led.svg',
   'gate': 'assets/svgs/gate.svg',
+  'servo': 'assets/svgs/gate.svg',
   'camera': 'assets/svgs/cam.svg',
 };
