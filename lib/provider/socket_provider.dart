@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:smarthome/constants/constants.dart';
 import 'package:smarthome/model/sockets/Dth.dart';
@@ -18,7 +20,7 @@ class SocketProvider extends ChangeNotifier {
     'led': false,
     'dth': false,
     'dust': false,
-    'waterStatus': false,
+    //'waterStatus': false,
     'neoPixel': false,
     'servo': false,
   };
@@ -43,11 +45,20 @@ class SocketProvider extends ChangeNotifier {
   bool get allComplete =>
       device.values.where((element) => element == true).length == device.length;
 
+  Timer _ledDebouncer;
+
   void updateLed(int id, int newPwm) {
     int idx = _leds.indexOf(_leds.firstWhere((element) => element.id == id));
     _leds[idx] = Led(id: id, pwm: newPwm);
     notifyListeners();
-    socket.emit("led", ({'room': id, 'pwm': newPwm}));
+    if (_ledDebouncer?.isActive ?? false) _ledDebouncer.cancel();
+    _ledDebouncer = Timer(
+      Duration(milliseconds: 500),
+      () {
+        print("Send to server");
+        socket.emit("led", ({'room': id, 'pwm': newPwm}));
+      },
+    );
   }
 
   void updatePump(int id, bool newStatus) {
@@ -61,6 +72,17 @@ class SocketProvider extends ChangeNotifier {
     _servo = newStatus;
     notifyListeners();
     socket.emit('servo', {'status': newStatus});
+  }
+
+  void updateNeoPixel(int id, Color color) {
+    _neoPixel = NeoPixel.fromColor(id, color);
+    notifyListeners();
+    socket.emit('neopixel', {
+      'r': color.red,
+      'g': color.green,
+      'b': color.blue,
+      'status': !(color.red == 0 && color.green == 0 && color.blue == 0)
+    });
   }
 
   SocketProvider() {
@@ -92,9 +114,9 @@ class SocketProvider extends ChangeNotifier {
       if (sensorInfo['sensor'] == 'neopixel') {
         _neoPixel = NeoPixel(
           id: sensorInfo['id'],
-          r: sensorInfo['initvalue'],
-          g: sensorInfo['initvalue'],
-          b: sensorInfo['initvalue'],
+          r: sensorInfo['initvalue']['r'],
+          g: sensorInfo['initvalue']['g'],
+          b: sensorInfo['initvalue']['b'],
         );
       }
       if (sensorInfo['sensor'] == 'pump') {
@@ -163,11 +185,11 @@ class SocketProvider extends ChangeNotifier {
           _dust = obj['dust'];
           notifyListeners();
         }
-        if (obj['waterStatus'] != null) {
+        /*if (obj['waterStatus'] != null) {
           device['waterStatus'] = true;
           _waterStatus = obj['waterStatus'];
           notifyListeners();
-        }
+        }*/
         if (obj['neoPixel'] != null) {
           device['neoPixel'] = true;
           _neoPixel = NeoPixel.fromJson(obj['neoPixel']);
@@ -175,7 +197,7 @@ class SocketProvider extends ChangeNotifier {
         }
         if (obj['servo'] != null) {
           device['servo'] = true;
-          _servo = obj['servo'];
+          _servo = obj['servo']['status'];
           notifyListeners();
         }
         print("Receive Init data :");

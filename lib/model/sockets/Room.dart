@@ -10,6 +10,7 @@ import 'package:smarthome/utils/sizeconfig.dart';
 
 import '../gate_model.dart';
 import '../led_model.dart';
+import '../neopixel_model.dart';
 
 class Room {
   final int id;
@@ -51,7 +52,9 @@ class Room {
     List<Devices> devices = [];
     if (dust > 0)
       for (int i = 0; i < dust; i++) devices.add(DustModel(provider.dust));
-    //if (neopixel > 0) for(int i = 0; i < neopixel; i ++)devices.add(NeoPixel());
+    if (neopixel > 0)
+      for (int i = 0; i < neopixel; i++)
+        devices.add(NeoPixelModel(provider.neoPixel));
     if (pump > 0)
       for (int i = 0; i < pump; i++)
         devices.add(PumpModel(provider.waterStatus));
@@ -96,9 +99,9 @@ class Room {
       widget.add(_makeWidget(cards, "온습도", context, provider));*/
     }
     if (neopixel > 0) {
-      /* final cards =
+      final cards =
           currentCard.where((element) => element is NeoPixelModel).toList();
-      widget.add(_makeWidget(cards, "네오픽셀", context, provider));*/
+      widget.add(_makeWidget(cards, "네오픽셀", context, provider));
     }
     if (dust > 0) {
       final cards =

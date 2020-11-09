@@ -8,7 +8,7 @@ const Map<String, String> assetLocation = {
   'dust': 'assets/svgs/dust.svg',
   'dth': defaultSvg,
   'waterStatus': 'assets/svgs/pump.svg',
-  'neoPixel': 'assets/svgs/led.svg',
+  'neoPixel': 'assets/svgs/rgb.svg',
   'gate': 'assets/svgs/gate.svg',
   'servo': 'assets/svgs/gate.svg',
   'camera': 'assets/svgs/cam.svg',

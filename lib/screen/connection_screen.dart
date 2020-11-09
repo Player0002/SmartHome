@@ -47,12 +47,10 @@ class _ConnectionScreenState extends State<ConnectionScreen>
     var item = itemProvider.device.keys
         .where((element) => itemProvider.device[element] == false)
         .toList();
-    print(item);
     SizeConfig().init(context);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.forward().whenComplete(() {
         setState(() {
-          print("Called! $currentIndex");
           controller.reset();
           /*var item = itemProvider.device.keys
                 .where((element) => itemProvider.device[element] == false)

@@ -71,36 +71,45 @@ class ControlCard<T> extends StatelessWidget {
                           "$title $index",
                           style: editCardTitleFont,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text.rich(TextSpan(
-                                text: "상태 : ",
-                                style: editCardSubtitleFont,
-                                children: [
-                                  TextSpan(
-                                    text: status ? "연결됨" : "연결실패",
-                                    style: editCardSubtitleFont.copyWith(
-                                        color: status
-                                            ? onlineTextColor
-                                            : offlineTextColor),
-                                  )
-                                ])),
-                            Text.rich(
-                              TextSpan(
-                                text: "$subtitle : ",
-                                style: editCardSubtitleFont,
-                                children: [
-                                  TextSpan(
-                                    text: "$value ${hasPercent ? "%" : ""}",
-                                    style: editCardSubtitleFont.copyWith(
-                                      color: color,
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text.rich(TextSpan(
+                                  text: "상태 : ",
+                                  style: editCardSubtitleFont,
+                                  children: [
+                                    TextSpan(
+                                      text: status ? "연결됨" : "연결실패",
+                                      style: editCardSubtitleFont.copyWith(
+                                          color: status
+                                              ? onlineTextColor
+                                              : offlineTextColor),
+                                    )
+                                  ])),
+                              SizedBox(width: getProportionateScreenWidth(20),),
+                              Text.rich(
+                                TextSpan(
+                                  text: "$subtitle : ",
+                                  style: editCardSubtitleFont,
+                                  children: [
+                                    TextSpan(
+                                      text: value is Color
+                                          ? "■"
+                                          : "$value ${hasPercent ? "%" : ""}",
+                                      style: value is Color
+                                          ? editCardTitleFont.copyWith(
+                                              color: value as Color)
+                                          : editCardSubtitleFont.copyWith(
+                                              color: color,
+                                            ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         )
                       ],
                     ),

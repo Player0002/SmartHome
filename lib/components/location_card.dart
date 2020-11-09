@@ -15,6 +15,7 @@ class LocationCard extends StatelessWidget {
   final List<Devices> devices;
   @override
   Widget build(BuildContext context) {
+    final height = getProportionateScreenHeight(285);
     return GestureDetector(
       onTap: onPress,
       child: Padding(
@@ -24,7 +25,7 @@ class LocationCard extends StatelessWidget {
         child: Container(
           margin: EdgeInsets.only(bottom: 20),
           width: double.infinity,
-          height: getProportionateScreenHeight(285),
+          height: height > 250 ? 250 : height,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             color: Colors.white,
@@ -81,8 +82,13 @@ class LocationCard extends StatelessWidget {
                                         top: getProportionateScreenHeight(10),
                                       ),
                                       child: Text(
-                                        "${e.currentState}",
-                                        style: cardInfoFont,
+                                        e.currentState is Color
+                                            ? "■"
+                                            : "${e.currentState}",
+                                        style: e.currentState is Color
+                                            ? cardInfoFont.copyWith(
+                                                color: e.currentState)
+                                            : cardInfoFont,
                                       ),
                                     ),
                                     Padding(
