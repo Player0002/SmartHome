@@ -3,29 +3,24 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:smarthome/components/control_card.dart';
 import 'package:smarthome/constants/colors.dart';
+import 'package:smarthome/constants/constants.dart';
 import 'package:smarthome/model/sockets/Room.dart';
 
 import 'devices.dart';
 
-class DustModel extends Devices<int> {
-  DustModel(int dust) {
-    assetsLocation = "assets/svgs/dust.svg";
-    currentState = dust;
+class DhtModel extends Devices<int> {
+  DhtModel(int humidity, int temp) {
+    assetsLocation = assetLocation['dth'];
+    currentState = humidity;
     isTwo = true;
-    secondState = "좋음";
+    secondState = "$temp";
   }
 
-  String get title => "미세먼지";
+  String get title => "온습도";
   String get subtitle => "현재";
 
-  String get secondState => currentState <= 30
-      ? "좋음"
-      : currentState <= 80
-          ? "보통"
-          : "나쁨";
-
   Color getColor() {
-    return currentState <= 30 ? onlineTextColor : offlineTextColor;
+    return onlineTextColor;
   }
 
   Widget toCard(BuildContext context, Room room, int index) {
@@ -33,6 +28,7 @@ class DustModel extends Devices<int> {
     return ControlCard(
       status: true,
       value: currentState,
+      value2: int.parse(secondState),
       assetLocation: assetsLocation,
       hasPercent: false,
       index: index,

@@ -19,6 +19,9 @@ class BaseControlScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         leading: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
           child: Icon(
             Icons.arrow_back_ios,
             color: defaultTextColor,

@@ -13,6 +13,7 @@ class ControlCard<T> extends StatelessWidget {
       @required this.index,
       @required this.subtitle,
       @required this.value,
+      this.value2,
       @required this.hasPercent,
       @required this.status,
       @required this.color})
@@ -22,6 +23,7 @@ class ControlCard<T> extends StatelessWidget {
   final String title;
   final String subtitle;
   final T value;
+  final T value2;
   final bool hasPercent;
   final int index;
   final bool status;
@@ -77,18 +79,26 @@ class ControlCard<T> extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text.rich(TextSpan(
-                                  text: "상태 : ",
+                                  text: title == "온습도" ? "온도 : " : "상태 : ",
                                   style: editCardSubtitleFont,
                                   children: [
                                     TextSpan(
-                                      text: status ? "연결됨" : "연결실패",
+                                      text: title == "온습도"
+                                          ? "$value2 ℃"
+                                          : status
+                                              ? "연결됨"
+                                              : "연결실패",
                                       style: editCardSubtitleFont.copyWith(
-                                          color: status
+                                          color: title == "온습도"
                                               ? onlineTextColor
-                                              : offlineTextColor),
+                                              : status
+                                                  ? onlineTextColor
+                                                  : offlineTextColor),
                                     )
                                   ])),
-                              SizedBox(width: getProportionateScreenWidth(20),),
+                              SizedBox(
+                                width: getProportionateScreenWidth(20),
+                              ),
                               Text.rich(
                                 TextSpan(
                                   text: "$subtitle : ",
@@ -97,7 +107,9 @@ class ControlCard<T> extends StatelessWidget {
                                     TextSpan(
                                       text: value is Color
                                           ? "■"
-                                          : "$value ${hasPercent ? "%" : ""}",
+                                          : title == "온습도"
+                                              ? "$value %"
+                                              : "$value ${hasPercent ? "%" : ""}",
                                       style: value is Color
                                           ? editCardTitleFont.copyWith(
                                               color: value as Color)

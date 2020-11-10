@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:smarthome/constants/constants.dart';
 import 'package:smarthome/model/sockets/Dth.dart';
 import 'package:smarthome/model/sockets/Led.dart';
@@ -92,6 +94,21 @@ class SocketProvider extends ChangeNotifier {
       'transports': ['websocket'],
       'autoConnect': false,
     });
+    socket.on('dht', (data) {
+      int idx =
+          dths.indexOf(dths.where((element) => element.id == data['id']).first);
+      if (idx == -1) return;
+      _dths[idx] = Dth(id: data['id'], humi: data['humi'], temp: data['temp']);
+      notifyListeners();
+    });
+    socket.on('dust', (data) {
+      _dust = (data['dust']).toInt();
+      notifyListeners();
+    });
+    socket.on('user_exit', (data) {
+      SystemNavigator.pop();
+      exit(0);
+    });
     socket.on('connect', (data) {
       print("Connected to server!");
       status = Status.connected;
@@ -166,6 +183,8 @@ class SocketProvider extends ChangeNotifier {
         }
         if (obj['led'] != null) {
           device['led'] = true;
+          print("LED RECEIVCE");
+          print(obj['led']);
           _leds.clear();
           (obj['led'] as List<dynamic>).forEach((element) {
             _leds.add(Led.fromJson(element));
@@ -197,6 +216,7 @@ class SocketProvider extends ChangeNotifier {
         }
         if (obj['servo'] != null) {
           device['servo'] = true;
+          print("SERVO RECEIVED");
           _servo = obj['servo']['status'];
           notifyListeners();
         }

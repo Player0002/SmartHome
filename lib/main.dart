@@ -38,6 +38,7 @@ void main() {
         ChangeNotifierProvider.value(value: SocketProvider()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: ConnectionScreen(),
       ),
     ),

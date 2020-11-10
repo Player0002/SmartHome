@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sweet_alert/flutter_sweet_alert.dart';
 import 'package:smarthome/components/add_location_card.dart';
 import 'package:smarthome/constants/fonts.dart';
 import 'package:smarthome/model/camera_model.dart';
 import 'package:smarthome/model/devices.dart';
+import 'package:smarthome/model/dht_model.dart';
 import 'package:smarthome/model/dust_model.dart';
 import 'package:smarthome/model/pump_model.dart';
 import 'package:smarthome/provider/socket_provider.dart';
@@ -60,9 +62,16 @@ class Room {
         devices.add(PumpModel(provider.waterStatus));
     if (servo > 0)
       for (int i = 0; i < servo; i++) devices.add(GateModel(provider.servo));
-    //if(dth > 0) for(int i = 0; i < dth; i ++)devices.add(DTHModel());
+    if (dth > 0)
+      for (int i = 0; i < dth; i++)
+        devices.add(
+          DhtModel(
+            provider.dths[i].humi.toInt(),
+            provider.dths[i].temp.toInt(),
+          ),
+        );
     if (camera > 0)
-      for (int i = 0; i < camera; i++) devices.add(CameraModel("link", false));
+      for (int i = 0; i < camera; i++) devices.add(CameraModel("link", true));
     if (led > 0)
       for (int i = 0; i < led; i++)
         devices.add(
@@ -94,9 +103,9 @@ class Room {
       widget.add(_makeWidget(cards, "게이트", context, provider));
     }
     if (dth > 0) {
-      /*final cards =
-          currentCard.where((element) => element is DthModel).toList();
-      widget.add(_makeWidget(cards, "온습도", context, provider));*/
+      final cards =
+          currentCard.where((element) => element is DhtModel).toList();
+      widget.add(_makeWidget(cards, "온습도", context, provider));
     }
     if (neopixel > 0) {
       final cards =
@@ -129,7 +138,15 @@ class Room {
         )
         ..add(
           AddLocationCard(
-            onPress: () {},
+            onPress: () {
+              SweetAlert.dialog(
+                type: AlertType.ERROR,
+                title: "미지원 기능입니다",
+                content: "아직 사용이 불가능합니다",
+                showCancel: false,
+                confirmButtonText: "확인",
+              );
+            },
             assetsName: title,
           ),
         ),

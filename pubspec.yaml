@@ -39,7 +39,8 @@ dependencies:
   flutter_sequence_animation: ^3.0.0
   flutter_xlider: ^3.4.0
   o_color_picker: ^0.1.0
-  yoyo_player: ^0.0.9
+  flutter_vlc_player: ^4.0.2
+  flutter_sweet_alert: ^0.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

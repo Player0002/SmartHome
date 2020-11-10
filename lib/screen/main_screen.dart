@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sweet_alert/flutter_sweet_alert.dart';
 import 'package:provider/provider.dart';
 import 'package:smarthome/components/add_location_card.dart';
 import 'package:smarthome/components/location_card.dart';
@@ -113,7 +114,15 @@ class MainScreen extends StatelessWidget {
                                         .toList())
                                     ..add(
                                       AddLocationCard(
-                                        onPress: () {},
+                                        onPress: () {
+                                          SweetAlert.dialog(
+                                            type: AlertType.ERROR,
+                                            title: "미지원 기능입니다",
+                                            content: "아직 사용이 불가능합니다",
+                                            showCancel: false,
+                                            confirmButtonText: "확인",
+                                          );
+                                        },
                                       ),
                                     ),
                                 ),

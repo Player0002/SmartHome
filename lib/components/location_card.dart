@@ -82,9 +82,11 @@ class LocationCard extends StatelessWidget {
                                         top: getProportionateScreenHeight(10),
                                       ),
                                       child: Text(
-                                        e.currentState is Color
-                                            ? "■"
-                                            : "${e.currentState}",
+                                        e.title == "온습도"
+                                            ? "${e.secondState} ℃"
+                                            : e.currentState is Color
+                                                ? "■"
+                                                : "${e.currentState}",
                                         style: e.currentState is Color
                                             ? cardInfoFont.copyWith(
                                                 color: e.currentState)
@@ -96,7 +98,9 @@ class LocationCard extends StatelessWidget {
                                         top: getProportionateScreenHeight(5),
                                       ),
                                       child: Text(
-                                        "${e.secondState}",
+                                        e.title == "온습도"
+                                            ? "${e.currentState}"
+                                            : "${e.secondState}",
                                         style: cardInfoFont.copyWith(
                                           color: e.getColor(),
                                         ),
