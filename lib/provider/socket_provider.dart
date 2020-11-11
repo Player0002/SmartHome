@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_sweet_alert/flutter_sweet_alert.dart';
 import 'package:smarthome/constants/constants.dart';
 import 'package:smarthome/model/sockets/Dth.dart';
 import 'package:smarthome/model/sockets/Led.dart';
@@ -106,8 +107,21 @@ class SocketProvider extends ChangeNotifier {
       notifyListeners();
     });
     socket.on('user_exit', (data) {
-      SystemNavigator.pop();
-      exit(0);
+      SweetAlert.dialog(
+        type: AlertType.ERROR,
+        title: "Error",
+        content: "Server disconnected",
+        showCancel: false,
+        confirmButtonText: "확인",
+      ).then(
+        (value) {
+          SystemNavigator.pop();
+          exit(0);
+        },
+      ).timeout(Duration(seconds: 2), onTimeout: () {
+        SystemNavigator.pop();
+        exit(0);
+      });
     });
     socket.on('connect', (data) {
       print("Connected to server!");
