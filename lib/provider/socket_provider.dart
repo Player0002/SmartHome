@@ -99,6 +99,8 @@ class SocketProvider extends ChangeNotifier {
       int idx =
           dths.indexOf(dths.where((element) => element.id == data['id']).first);
       if (idx == -1) return;
+      if (data['humi'] == null) data['humi'] = 0.0;
+      if (data['temp'] == null) data['temp'] = 0.0;
       _dths[idx] = Dth(id: data['id'], humi: data['humi'], temp: data['temp']);
       notifyListeners();
     });

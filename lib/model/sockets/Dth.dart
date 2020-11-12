@@ -6,7 +6,7 @@ class Dth {
 
   factory Dth.fromJson(Map<String, dynamic> map) => Dth(
         id: map['id'],
-        temp: 1.0 * map['temp'],
-        humi: 1.0 * map['humi'],
+        temp: 1.0 * (map['temp'] ?? 0.0),
+        humi: 1.0 * (map['humi'] ?? 0.0),
       );
 }
