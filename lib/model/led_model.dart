@@ -1,12 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smarthome/components/control_card.dart';
 import 'package:smarthome/constants/colors.dart';
 import 'package:smarthome/model/sockets/Led.dart';
 import 'package:smarthome/model/sockets/Room.dart';
-
-import 'file:///D:/FlutterProjects/smarthome/lib/screen/control/led_control_screen.dart';
+import 'package:smarthome/provider/socket_provider.dart';
+import 'package:smarthome/screen/control/led_control_screen_refactor.dart';
 
 import 'devices.dart';
 
@@ -26,7 +27,7 @@ class LedModel extends Devices<int> {
   }
 
   Widget toCard(BuildContext context, Room room, int index) {
-    print("OH ");
+    print("OH sad");
     return ControlCard(
       status: true,
       value: currentState,
@@ -39,7 +40,7 @@ class LedModel extends Devices<int> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (ctx) => LedControlScreen(
+            builder: (ctx) => LedControlScreenRefactor(
               isOk: true,
               room: room,
               title: "조명 $index",

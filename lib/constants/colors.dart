@@ -9,3 +9,5 @@ final brightStartColor = Color(0xFFA1F5FF);
 final brightEndColor = Color(0xFF0A6A94);
 final tabColor = Color(0x7FDADADA);
 final lightFull = Color(0xFFFFFFAB);
+final sliderFull = Color(0xFFFBFB83);
+final statusBackColor = Color(0xFFDADADA);
