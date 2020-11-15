@@ -84,7 +84,7 @@ class ControlCard<T> extends StatelessWidget {
                                   children: [
                                     TextSpan(
                                       text: title == "온습도"
-                                          ? "$value2 ℃"
+                                          ? "${!status ? "오류" : "$value2 ℃"}"
                                           : status
                                               ? "연결됨"
                                               : "연결실패",
@@ -108,7 +108,7 @@ class ControlCard<T> extends StatelessWidget {
                                       text: value is Color
                                           ? "■"
                                           : title == "온습도"
-                                              ? "$value %"
+                                              ? "${!status ? "오류" : "$value %"}"
                                               : "$value ${hasPercent ? "%" : ""}",
                                       style: value is Color
                                           ? editCardTitleFont.copyWith(

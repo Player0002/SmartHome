@@ -35,7 +35,7 @@ class MainScreen extends StatelessWidget {
                       makeTitle(appTitle),
                       makeSubtitle(
                           "현재 연결된 방의 수는 ${provider.rooms.length}개 입니다."),
-                      makeSubtitle("연결중 0개의 오류가 발생했습니다."),
+                      makeSubtitle("연결중 ${provider.errorCnt}개의 오류가 발생했습니다."),
                       SizedBox(height: getProportionateScreenHeight(10)),
                     ],
                   ),

@@ -8,3 +8,4 @@ final brightTextColor = Color(0xFF4DA0B0);
 final brightStartColor = Color(0xFFA1F5FF);
 final brightEndColor = Color(0xFF0A6A94);
 final tabColor = Color(0x7FDADADA);
+final lightFull = Color(0xFFFFFFAB);

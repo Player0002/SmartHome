@@ -48,6 +48,8 @@ class SocketProvider extends ChangeNotifier {
   bool get allComplete =>
       device.values.where((element) => element == true).length == device.length;
 
+  int errorCnt = 0;
+
   Timer _ledDebouncer;
 
   void updateLed(int id, int newPwm) {
@@ -99,9 +101,14 @@ class SocketProvider extends ChangeNotifier {
       int idx =
           dths.indexOf(dths.where((element) => element.id == data['id']).first);
       if (idx == -1) return;
-      if (data['humi'] == null) data['humi'] = 0.0;
-      if (data['temp'] == null) data['temp'] = 0.0;
-      _dths[idx] = Dth(id: data['id'], humi: data['humi'], temp: data['temp']);
+      if (data['humi'] == null) data['humi'] = -127.0;
+      if (data['temp'] == null) data['temp'] = -127.0;
+      if (data['humi'] == -127.0 || data['temp'] == -127.0)
+        errorCnt = 1;
+      else
+        errorCnt = 0;
+      _dths[idx] = Dth(
+          id: data['id'], humi: data['humi'] * 1.0, temp: data['temp'] * 1.0);
       notifyListeners();
     });
     socket.on('dust', (data) {
@@ -211,6 +218,10 @@ class SocketProvider extends ChangeNotifier {
           device['dth'] = true;
           _dths.clear();
           (obj['dth'] as List<dynamic>).forEach((element) {
+            if (element['humi'] == -127.0 || element['temp'] == -127.0)
+              errorCnt = 1;
+            else
+              errorCnt = 0;
             _dths.add(Dth.fromJson(element));
           });
           notifyListeners();

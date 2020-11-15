@@ -17,16 +17,18 @@ class DhtModel extends Devices<int> {
   }
 
   String get title => "온습도";
-  String get subtitle => "현재";
+  String get subtitle => "습도";
 
   Color getColor() {
-    return onlineTextColor;
+    return !(currentState == -127 && int.parse(secondState) == -127)
+        ? onlineTextColor
+        : offlineTextColor;
   }
 
   Widget toCard(BuildContext context, Room room, int index) {
     print("OH ");
     return ControlCard(
-      status: true,
+      status: !(currentState == -127 && int.parse(secondState) == -127),
       value: currentState,
       value2: int.parse(secondState),
       assetLocation: assetsLocation,
