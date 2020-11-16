@@ -23,7 +23,6 @@ class GateModel extends Devices<String> {
   }
 
   Widget toCard(BuildContext context, Room room, int index) {
-    print("OH ");
     return ControlCard(
       status: true,
       value: currentState,

@@ -20,7 +20,6 @@ class PumpModel extends Devices<String> {
   }
 
   Widget toCard(BuildContext context, Room room, int index) {
-    print("OH ");
     return ControlCard(
       status: true,
       value: currentState,
@@ -29,7 +28,16 @@ class PumpModel extends Devices<String> {
       index: index,
       subtitle: subtitle,
       title: title,
-      onPress: () {Navigator.push(context, MaterialPageRoute(builder: (ctx) => PumpControlScreen(isOk: true, room: room, title: "펌프 $index",)));},
+      onPress: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (ctx) => PumpControlScreen(
+                      isOk: true,
+                      room: room,
+                      title: "펌프 $index",
+                    )));
+      },
       color: getColor(),
     );
   }

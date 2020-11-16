@@ -35,7 +35,6 @@ class LedControlScreen extends StatelessWidget {
       body: Consumer<SocketProvider>(builder: (ctx, item, _) {
         final led = item.leds.firstWhere((element) => element.id == room.id);
         if (led == null) return CircularProgressIndicator();
-        print(led.pwm);
         return SizedBox(
           width: double.infinity,
           child: Center(

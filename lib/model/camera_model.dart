@@ -26,9 +26,6 @@ class CameraModel extends Devices<String> {
   VlcPlayerController controller;
 
   Widget toCard(BuildContext context, Room room, int index) {
-    print("OH ");
-    print(
-        "${serverIp.substring(0, serverIp.length - 5)}3000/image?url=sample_images_05.png");
     controller = VlcPlayerController(
       onInit: () {
         controller.play();

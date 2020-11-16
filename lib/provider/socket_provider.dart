@@ -60,7 +60,6 @@ class SocketProvider extends ChangeNotifier {
     _ledDebouncer = Timer(
       Duration(milliseconds: 500),
       () {
-        print("Send to server");
         socket.emit("led", ({'room': id, 'pwm': newPwm}));
       },
     );
@@ -68,7 +67,6 @@ class SocketProvider extends ChangeNotifier {
 
   void updatePump(int id, bool newStatus) {
     _waterStatus = newStatus;
-    print("UPDATE $id");
     notifyListeners();
     socket.emit('water_state', {'status': newStatus});
   }
@@ -91,7 +89,6 @@ class SocketProvider extends ChangeNotifier {
   }
 
   SocketProvider() {
-    print("HERE");
     if (_socket != null) return;
     _socket = IO.io(serverIp, <String, dynamic>{
       'transports': ['websocket'],
@@ -133,7 +130,6 @@ class SocketProvider extends ChangeNotifier {
       });
     });
     socket.on('connect', (data) {
-      print("Connected to server!");
       status = Status.connected;
       notifyListeners();
 
@@ -142,9 +138,6 @@ class SocketProvider extends ChangeNotifier {
     socket.on('add_sensor', (data) {
       final roomInfo = data['room'];
       final sensorInfo = data['updated'];
-      //print(data);
-      print("Current room");
-      print(_rooms);
       int idx = _rooms.indexOf(
           _rooms.firstWhere((element) => element.id == roomInfo['id']));
       _rooms[idx] = Room.fromJson(roomInfo);
@@ -176,21 +169,14 @@ class SocketProvider extends ChangeNotifier {
       }
       if (sensorInfo['sensor'] == 'led') {
         _leds.add(Led(id: sensorInfo['id'], pwm: sensorInfo['initvalue']));
-        print("LED IS ADDED");
       }
       notifyListeners();
       // _rooms.forEach((element) {
-      //   print("ELEMENT : ${element.id} / ROOMID : ${roomInfo['id']}");
       //   if (element.id == roomInfo['id']) {
-      //     print("FIND");
       //     element =
       //
       //   }
       // });
-      print("END FOREACH");
-      rooms.forEach((element) {
-        print("ID : ${element.id} , ${element.address}, ${element.led}");
-      });
     });
     socket.on(
       'init',
@@ -206,8 +192,6 @@ class SocketProvider extends ChangeNotifier {
         }
         if (obj['led'] != null) {
           device['led'] = true;
-          print("LED RECEIVCE");
-          print(obj['led']);
           _leds.clear();
           (obj['led'] as List<dynamic>).forEach((element) {
             _leds.add(Led.fromJson(element));
@@ -243,13 +227,9 @@ class SocketProvider extends ChangeNotifier {
         }
         if (obj['servo'] != null) {
           device['servo'] = true;
-          print("SERVO RECEIVED");
           _servo = obj['servo']['status'];
           notifyListeners();
         }
-        print("Receive Init data :");
-        print(obj);
-        print("\n");
       },
     );
     socket.connect();

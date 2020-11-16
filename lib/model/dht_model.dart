@@ -26,7 +26,6 @@ class DhtModel extends Devices<int> {
   }
 
   Widget toCard(BuildContext context, Room room, int index) {
-    print("OH ");
     return ControlCard(
       status: !(currentState == -127 && int.parse(secondState) == -127),
       value: currentState,

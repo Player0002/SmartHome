@@ -80,7 +80,6 @@ class Room {
   }
 
   List<Widget> buildWidget(SocketProvider provider, BuildContext context) {
-    print("REDRAW");
     List<Widget> widget = [];
     List<Devices> currentCard = toCards(provider);
     if (camera > 0) {

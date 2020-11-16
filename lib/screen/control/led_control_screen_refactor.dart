@@ -14,14 +14,12 @@ class LedControlScreenRefactor extends StatelessWidget {
   final String title;
   final Room room;
   LedControlScreenRefactor({this.isOk, this.room, this.title});
-  final _appbarKey = UniqueKey();
   final _titleKey = UniqueKey();
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Consumer<SocketProvider>(builder: (ctx, item, _) {
-      final led = item.leds[room.id -
-          1]; //item.leds.firstWhere((element) => element.id == room.id);
+      final led = item.leds[room.id - 1];
       final size = SizeConfig.screenWidth * 0.4;
       if (led == null) return CircularProgressIndicator();
       return Scaffold(

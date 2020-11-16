@@ -35,7 +35,6 @@ class NeoPixelModel extends Devices<Color> {
   }
 
   Widget toCard(BuildContext context, Room room, int index) {
-    print("OH ");
     return Consumer<SocketProvider>(
       builder: (ctx, item, _) => ControlCard<Color>(
         status: true,
@@ -54,7 +53,6 @@ class NeoPixelModel extends Devices<Color> {
                 selectedColor: item.neoPixel.color,
                 colors: primaryColorsPalette,
                 onColorChange: (color) {
-                  print(color);
                   item.updateNeoPixel(item.neoPixel.id, color);
                   Navigator.of(context).pop();
                 },

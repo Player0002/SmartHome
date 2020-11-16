@@ -1,12 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:smarthome/components/control_card.dart';
 import 'package:smarthome/constants/colors.dart';
 import 'package:smarthome/model/sockets/Led.dart';
 import 'package:smarthome/model/sockets/Room.dart';
-import 'package:smarthome/provider/socket_provider.dart';
 import 'package:smarthome/screen/control/led_control_screen_refactor.dart';
 
 import 'devices.dart';
@@ -27,7 +25,6 @@ class LedModel extends Devices<int> {
   }
 
   Widget toCard(BuildContext context, Room room, int index) {
-    print("OH sad");
     return ControlCard(
       status: true,
       value: currentState,
