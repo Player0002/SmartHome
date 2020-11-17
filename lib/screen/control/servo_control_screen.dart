@@ -31,9 +31,12 @@ class ServoControlScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SvgPicture.asset(
-                assetLocation['servo'],
-                width: minWH * 0.5,
+              Hero(
+                tag: "images게이트1",
+                child: SvgPicture.asset(
+                  assetLocation['servo'],
+                  width: minWH * 0.5,
+                ),
               ),
               Consumer<SocketProvider>(
                 builder: (ctx, itm, _) => CustomTabs(

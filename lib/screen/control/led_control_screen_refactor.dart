@@ -74,9 +74,12 @@ class LedControlScreenRefactor extends StatelessWidget {
                                 Transform.translate(
                                   offset:
                                       Offset((led.pwm * 1.15) + -(size / 2), 0),
-                                  child: SvgPicture.asset(
-                                    'assets/svgs/led.svg',
-                                    width: size + size / 2 * (led.pwm / 100),
+                                  child: Hero(
+                                    tag: "images조명1",
+                                    child: SvgPicture.asset(
+                                      'assets/svgs/led.svg',
+                                      width: size + size / 2 * (led.pwm / 100),
+                                    ),
                                   ),
                                 ),
                                 SizedBox(

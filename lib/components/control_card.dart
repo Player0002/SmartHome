@@ -30,6 +30,7 @@ class ControlCard<T> extends StatelessWidget {
   final Color color;
   @override
   Widget build(BuildContext context) {
+    print("images$title$index");
     return GestureDetector(
       onTap: onPress,
       child: Padding(
@@ -57,9 +58,12 @@ class ControlCard<T> extends StatelessWidget {
               padding: EdgeInsets.all(getProportionateScreenWidth(20)),
               child: Row(
                 children: [
-                  AspectRatio(
-                    aspectRatio: 1,
-                    child: SvgPicture.asset(assetLocation),
+                  Hero(
+                    tag: "images$title$index",
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: SvgPicture.asset(assetLocation),
+                    ),
                   ),
                   SizedBox(
                     width: getProportionateScreenWidth(40),

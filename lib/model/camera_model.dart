@@ -41,19 +41,22 @@ class CameraModel extends Devices<String> {
           child: SizedBox(
             width: double.infinity,
             child: cams.containsKey(room.id)
-                ? Container(
-                    child: VlcPlayer(
-                      aspectRatio: 16 / 9,
-                      url: cams[room.id],
-                      controller: controller,
-                      placeholder: Container(
-                        color: Colors.black,
-                        child: Center(
-                          child: CircularProgressIndicator(),
+                ? RotatedBox(
+                  quarterTurns: 2,
+                  child: Container(
+                      child: VlcPlayer(
+                        aspectRatio: 16 / 9,
+                        url: cams[room.id],
+                        controller: controller,
+                        placeholder: Container(
+                          color: Colors.black,
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
                         ),
                       ),
                     ),
-                  )
+                )
                 : Image.network(
                     '${serverIp.substring(0, serverIp.length - 5)}3000/image?url=sample_images_05.png',
                     loadingBuilder: (ctx, _, __) {
